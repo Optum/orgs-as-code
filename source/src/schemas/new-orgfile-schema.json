@@ -1,0 +1,95 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2020-12/vocab/core": true,
+        "https://json-schema.org/draft/2020-12/vocab/applicator": true,
+        "https://json-schema.org/draft/2020-12/vocab/validation": true,
+        "https://example.com/vocab/example-vocab": true
+    },
+    "title": "New Orgfile",
+    "description": "A definition for a yet-to-be-created GitHub Organization",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the organization",
+            "$ref": "#/definitions/nonEmptyString"
+        },
+        "sponsor": {
+            "type": "object",
+            "description": "The default organization wide sponsor. If individual repositories do not have their own sponsors, this Sponsor will be used.",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/nonEmptyString"
+                },
+                "billingEmail": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "billingCode": {
+                    "description": "A value used to uniquely identify a payer for your particular Organization (e.g., GL Code).",
+                    "$ref": "#/definitions/nonEmptyString"
+                },
+                "billingCodeType": {
+                    "description": "A value used to help clients of this probot determine what type of data the sponsor code is.",
+                    "$ref": "#/definitions/nonEmptyString"
+                }
+            },
+            "required": [
+                "name",
+                "billingEmail",
+                "billingCode",
+                "billingCodeType"
+            ]
+        },
+        "owners": {
+            "description": "The Owners of the Organization will be set via this setting. Changing the Owners of the organization outside of this file will cause the changes to be lost.",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "gitHubUserName": {
+                        "$ref": "#/definitions/nonEmptyString"
+                    }
+                },
+                "required": [
+                    "gitHubUserName"
+                ]
+            }
+        },
+        "alwaysInstalledGitHubApps": {
+            "type": "array",
+            "description": "A list of GitHub App Ids that this app will ensure are installed in the Organization. It ensures this by checking and reinstalling at a set time period.",
+            "minItems": 0,
+            "maxItems": 50,
+            "items": {
+                "anyOf": [{
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "#/definitions/nonEmptyString"
+                            }
+                        },
+                        "required": [
+                            "id"
+                        ]
+                    },
+                    {
+                        "$ref": "#/definitions/nonEmptyString"
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "name",
+        "sponsor",
+        "owners"
+    ],
+    "definitions": {
+        "nonEmptyString": {
+            "type": "string",
+            "minLength": 1
+        }
+    }
+}

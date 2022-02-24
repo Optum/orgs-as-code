@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Existing Orgfile",
+    "description": "A definition for an existing GitHub Organization",
+    "type": "object",
+    "allOf": [{
+            "$ref": "https://redacted.com/raw/Joshua/OrgsAsCode/main/schemas/base-orgfile-schema.json"
+        },
+        {
+            "$ref": "#/definitions/existingOrg"
+        }
+    ],
+    "definitions": {
+        "nonEmptyString": {
+            "type": "string",
+            "minLength": 1
+        },
+        "existingOrg": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/nonEmptyString"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        }
+    }
+}

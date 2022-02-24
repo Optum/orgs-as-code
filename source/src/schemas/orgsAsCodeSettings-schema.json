@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "OrgsAsCodeSettings",
+    "description": "The settings for the Orgs As Code Probot.",
+    "type": "object",
+    "properties": {
+        "alwaysAddedOwners": {
+            "description": "Users listed here will be added as Owners to ALL Organizations, unless otherwise specified.",
+            "type": "array",
+            "items": [{
+                "type": "object",
+                "properties": {
+                    "gitHubUserName": {
+                        "$ref": "#/definitions/nonEmptyString"
+                    },
+                    "doNotAddToOrgs": {
+                        "description": "A list of Organization IDs to NOT add this owner to by default.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "gitHubUserName"
+                ]
+            }]
+        },
+        "alwaysInstalledGitHubApps": {
+            "type": "array",
+            "description": "A list of GitHub App Ids that this app will ensure are installed in the Organization. It ensures this by checking and reinstalling at a set time period.",
+            "alwaysInstalledGitHubApps": {
+                "type": "array",
+                "description": "A list of GitHub App Ids that this app will ensure are installed in the Organization. It ensures this by checking and reinstalling at a set time period.",
+                "item": {
+                    "type": "object",
+                    "properties": {
+                        "appId": {
+                            "$ref": "#/definitions/nonEmptyString"
+                        }
+                    }
+                },
+                "required": [
+                    "appId"
+                ]
+            }
+        },
+        "organizationSyncCheckInterval": {
+            "description": "The time in minutes for this bot to check all Organizations (unless specified otherwise) within the Enterprise.",
+            "type": "number",
+            "minimum": 10,
+            "default": 60
+        },
+        "excludedOrganizations": {
+            "description": "A list of Organizations to explicitly ignore.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "orgId": {
+                        "$ref": "#/definitions/nonEmptyString"
+                    },
+                    "reason": {
+                        "$ref": "#/definitions/nonEmptyString"
+                    }
+                },
+                "required": [
+                    "orgId",
+                    "reason"
+                ]
+            }
+        },
+        "requiredOrganizationPrefixes": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+            }
+        }
+    },
+    "definitions": {
+        "nonEmptyString": {
+            "type": "string",
+            "minLength": 1
+        }
+    }
+}

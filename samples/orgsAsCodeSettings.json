@@ -1,0 +1,13 @@
+{
+    "organizationSyncCheckInterval": 60,
+    "excludedOrganization": [{
+        "orgId": "SomeId",
+        "reason": "Pretend there is a good reason stated here."
+    }],
+    "alwaysAddedOwners": [{
+        "gitHubUserName": "MY_ADMIN_BOT"
+    }],
+    "alwaysInstalledGitHubApps": [{
+        "id": "internal-settings-probot"
+    }]
+}

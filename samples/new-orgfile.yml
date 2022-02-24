@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://redacted.com/raw/Joshua/OrgsAsCode/main/source/src/schemas/new-orgfile-schema.json
+name: "Some Organization"
+owners:
+- gitHubUserName: JoshuaTheMiller
+sponsor:
+  sponsorCode: SomeCode
+  sponsorCodeType: gl
+  billingEmail: something@example.com
+  name: Name of sponsor

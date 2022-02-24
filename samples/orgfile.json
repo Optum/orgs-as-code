@@ -1,0 +1,13 @@
+{
+    "$schema": "https://redacted.com/raw/Joshua/OrgsAsCode/main/source/src/schemas/new-orgfile-schema.json",
+    "id": "1234567890-DO_NOT_CHANGE_THIS",
+    "name": "Some Organization",
+    "owners": [{
+        "gitHubUserName": "JoshuaTheMiller"
+    }],
+    "sponsor": {
+        "defaultGlCode": "SomeCode",
+        "email": "something@example.com",
+        "name": "Name of sponsor"
+    }
+}
